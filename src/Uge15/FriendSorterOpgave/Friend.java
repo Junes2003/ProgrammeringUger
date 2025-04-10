@@ -1,11 +1,7 @@
 package Uge15.FriendSorterOpgave;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Friend {
     private static int nextId = 1000;
-
     private int id;
     private String name;
     private String phone;
@@ -34,22 +30,25 @@ public class Friend {
         return "Unknown";
     }
 
-    public String getContinent() {
-        Map<String, String> countryToContinent = new HashMap<>();
-        countryToContinent.put("USA", "North America");
-        countryToContinent.put("Denmark", "Europe");
-        countryToContinent.put("Sweden", "Europe");
-        countryToContinent.put("Belgium", "Europe");
-        countryToContinent.put("UK", "Europe");
-
-        return countryToContinent.getOrDefault(getCountry(), "Unknown");
-    }
-
     public int getId() { return id; }
     public String getName() { return name; }
     public String getPhone() { return phone; }
     public String getEmail() { return email; }
     public String getCountry() { return country; }
+
+    public String getContinent() {
+        switch (country) {
+            case "USA":
+                return "North America";
+            case "Denmark":
+            case "Sweden":
+            case "Belgium":
+            case "UK":
+                return "Europe";
+            default:
+                return "Unknown";
+        }
+    }
 
     @Override
     public String toString() {
